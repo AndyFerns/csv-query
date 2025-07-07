@@ -1,4 +1,4 @@
-# 📊 CSV-Query 
+# 📊 CSV-Query
 
 A lightweight command-line SQL-like query engine for CSV files.
 
