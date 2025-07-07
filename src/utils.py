@@ -1,5 +1,6 @@
 import time
 import csv
+import hashlib
 
 def export_to_csv(rows, filename, columns):
     with open(filename, 'w', newline='', encoding='utf-8') as f:
@@ -16,3 +17,6 @@ def profile(stage_name):
             return result
         return wrapped
     return decorator
+
+def hash_row(row):
+    return hashlib.md5(str(sorted(row.items())).encode()).hexdigest()
