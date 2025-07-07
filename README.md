@@ -32,7 +32,6 @@ csv query/
 │   ├── utils.py
 ```
 
-
 ---
 
 ## 🛠 Installation
