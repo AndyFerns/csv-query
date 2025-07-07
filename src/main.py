@@ -3,27 +3,17 @@ from parser import parse_query
 from loader import load_csv, get_columns, get_summary_stats
 from filter import row_matches
 from tabulate import format_output
-from utils import export_to_csv, hash_row
+from utils import export_to_csv, display_help, deduplicate_rows
 
 import os
 
-def deduplicate_rows(rows):
-    seen = set()
-    unique = []
-    for row in rows:
-        h = hash_row(row)
-        if h not in seen:
-            seen.add(h)
-            unique.append(row)
-    return unique
-
 def interactive_mode(filename, output_format):
     print(f"Loaded '{filename}'. Enter your SQL-like queries.")
-    print("Commands: \n - DESC\n - STATS\n - EXPORT <filename>\n - QUIT")
+    print("Commands: \n - DESC\n - STATS\n - EXPORT <filename>\n - HELP\n - QUIT")
     data = load_csv(filename)
     last_result = []
 
-    while True:
+    while True: #main interactive mode loop
         try:
             query = input("csvsql> ").strip()
             if not query:
@@ -37,6 +27,9 @@ def interactive_mode(filename, output_format):
             elif query.upper() == 'STATS':
                 print(get_summary_stats(data))
                 continue
+            elif query.upper() == 'HELP':
+                display_help()
+                continue 
             elif query.upper().startswith('EXPORT '):
                 out_file = query.split(' ', 1)[1]
                 if last_result:
