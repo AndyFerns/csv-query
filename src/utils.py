@@ -42,7 +42,7 @@ def display_help():
     print("\033[92m🟢 QUERY COMMANDS\033[0m")
     print("  SELECT ... FROM file.csv WHERE ... ORDER BY ... LIMIT ...")
     print("  SELECT DISTINCT column FROM file.csv")
-    print("  DESC                     → View CSV column names and row count")
+    print("  DESC                    → View CSV column names and row count")
     print("  STATS                   → Summary statistics (mean, std, etc.)")
     print("  EXPORT filename.csv     → Save last query result")
     print("  EXIT or QUIT            → Exit the CLI\n")
